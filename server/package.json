@@ -12,9 +12,12 @@
   "dependencies": {
     "axios": "^1.7.2",
     "body-parser": "^1.20.2",
+    "browsers": "^1.0.2",
+    "chrome": "^0.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "install": "^0.13.0",
     "nodemon": "^3.1.2",
     "puppeteer": "^22.10.0"
   }

@@ -7,7 +7,7 @@ async function scarpeFuntion(topic) {
 
   //seting user-agest to bypass login-stuff
   await page.setUserAgent(
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/0.0.0.0 Safari/537.36"
   );
 
   const query = encodeURIComponent(topic);
@@ -35,16 +35,18 @@ async function scarpeFuntion(topic) {
       const author = authorElement ? authorElement.innerText : null;
 
       const spanElement = article.querySelectorAll("span");
-      const dateElement = spanElement.length >= 4 ? spanElement[4].innerText : spanElement[6].innerText;
+      const date =
+        spanElement.length >= 4
+          ? spanElement[4].innerText
+          : spanElement[6].innerText;
       //const readTime = spanElement.length >= 3 ? spanElement[1].innerText : null;
-   
 
       const linkElement = article.querySelector('a[rel="noopener follow"]');
       const link = linkElement ? linkElement.href : null;
 
       // Add the article data to the array
       if (title && author && link) {
-        articleData.push({ title, author, link, dateElement, });
+        articleData.push({ title, author, link, date });
       }
     });
 
