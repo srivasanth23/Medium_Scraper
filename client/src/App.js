@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "./components/Header";
 import FailureView from "./components/FailureView";
 import LoaderView from "./components/LoaderView";
+import Footer from "./components/Footer";
 import ArticleContainer from "./components/ArticleContainer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -43,8 +44,14 @@ const App = () => {
     setshowmore(!showmore);
   };
 
+  const handleInput = (e) => {
+    setTopic(e.target.value);
+    setArticlesArray([]);
+    setshowmore(false);
+  };
+
   return (
-    <div>
+    <div className="App">
       <Header />
       <div className="paddings div-container">
         <form onSubmit={fetchArticles}>
@@ -54,7 +61,7 @@ const App = () => {
             className="inputElem"
             data-testid="input"
             value={topic}
-            onChange={(e) => setTopic(e.target.value)}
+            onChange={handleInput}
           />
           <button data-testid="button" className="btnElem" type="submit">
             Parse
@@ -63,7 +70,7 @@ const App = () => {
       </div>
       {isLoading ? <LoaderView /> : null}
       {isFailure ? <FailureView /> : null}
-      <ul className="paddings">
+      <ul className="paddings ul-container">
         {(showmore ? articlesArray : articlesArray.slice(0, 5)).map((each) => (
           <ArticleContainer article={each} />
         ))}
@@ -74,6 +81,7 @@ const App = () => {
         </button>
       )}
       <ToastContainer position="bottom-right" className="toast-container" />
+      <Footer />
     </div>
   );
 };

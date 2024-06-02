@@ -1,3 +1,10 @@
+.App{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .div-container {
   display: flex;
   flex-direction: row;
@@ -34,6 +41,16 @@
   border: none;
   color: rgb(2, 160, 252);
   text-decoration: underline;
+  align-self: flex-end;
+  margin-right : 100px;
+}
+
+.ul-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 700px) {
@@ -51,5 +68,10 @@
 
   .toast-container {
     width: 80%;
+  }
+
+  .showmoreBtn {
+    margin-right : 20px;
+    margin-bottom: 20px;
   }
 }

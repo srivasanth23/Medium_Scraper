@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "dev": "concurrently \"cd client && npm install && npm start\" \"cd server && npm install && node index.js\"",
-    "start": "concurrently \"cd client && npm start\" \"cd server && node index.js\""
-  },
-  "dependencies": {
-    "concurrently": "^8.2.2"
-  }
-}

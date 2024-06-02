@@ -34,19 +34,67 @@ async function scarpeFuntion(topic) {
       const authorElement = article.querySelector("p");
       const author = authorElement ? authorElement.innerText : null;
 
-      const spanElement = article.querySelectorAll("span");
-      const date =
-        spanElement.length >= 4
-          ? spanElement[4].innerText
-          : spanElement[6].innerText;
-      //const readTime = spanElement.length >= 3 ? spanElement[1].innerText : null;
+      const spanElem = article.querySelectorAll("span");
 
-      const linkElement = article.querySelector('a[rel="noopener follow"]');
-      const link = linkElement ? linkElement.href : null;
+      spanCount = spanElem.length;
+      if (spanCount == 13) {
+        //premium article
+        date = spanElem[6].innerText;
+        if (date) {
+          readTime = spanElem[3].innerText;
+          premium = "true";
+        }
+      } else if (spanCount == 11) {
+        //non-premium article
+        date = spanElem[4].innerText;
+        if (date) {
+          readTime = spanElem[1].innerText;
+          premium = "false";
+        }
+      } else if (spanCount === 12) {
+        //posted just now
+        date = "some hours ago";
+        readTime = spanElem[3].innerText;
+        premium = null;
+      } else {
+        date = null;
+        readTime = null;
+        premium = null;
+      }
+
+      // ------ Please ignore below code ------
+      // const dateElem = spanElem.length <= 4 ? spanElem[4].innerText : spanElem[6].innerText;
+      // const date = dateElem === "." ? null : dateElem;
+
+      // if (spanElem.length >= 5) {
+      //   if (spanElem.length <= 5) {
+      //     // Non-premium article:
+      //     readTime = "Premium";
+      //     date = "Premium";
+      //   } else if (spanElem.length >= 7) {
+      //     // Premium article:
+      //     readTime = spanElem[1].innerText;
+      //     date = spanElem[4].innerText;
+      //   }
+      // }
+
+      // const readTimeElem = spanElem[3].innerText;
+      // const readTime = readTimeElem === "." ? null : readTimeElem;
+
+      const linkElement = article.querySelector('div[role="link"]');
+      const link = linkElement ? linkElement.getAttribute("data-href") : null;
 
       // Add the article data to the array
       if (title && author && link) {
-        articleData.push({ title, author, link, date });
+        articleData.push({
+          spanCount,
+          title,
+          author,
+          link,
+          date,
+          readTime,
+          premium,
+        });
       }
     });
 
