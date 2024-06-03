@@ -5,17 +5,7 @@ async function scarpeFuntion(topic) {
   //Launch the browser and open a new blank page
   const chromiumExecutablePath = puppeteer.executablePath();
 
-  const browser = await puppeteer.launch({
-    executablePath: chromiumExecutablePath,
-    args: [
-      "--no-sandbox",
-      "--disable-setuid-sandbox",
-      "--disable-dev-shm-usage",
-      "--single-process",
-      "--no-zygote",
-    ],
-    headless: true,
-  });
+  const browser = await puppeteer.launch({executablePath: '/path/to/Chrome'});
 
   const page = await browser.newPage();
   await page.setDefaultNavigationTimeout(0);
