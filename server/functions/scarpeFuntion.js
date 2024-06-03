@@ -1,3 +1,4 @@
+process.env.PUPPETEER_CACHE_DIR = '/opt/render/.cache/puppeteer';
 const puppeteer = require("puppeteer");
 
 async function scarpeFuntion(topic) {
