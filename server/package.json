@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "postinstall": "npx puppeteer browsers install chrome"
+    "postinstall": "apt-get update && apt-get install -y chromium-browser libnss3 libxss1 libasound2 lsof && npx puppeteer install --unsafe-perm=true --allow-root"
   },
   "keywords": [],
   "author": "Srivasanth jammula",
