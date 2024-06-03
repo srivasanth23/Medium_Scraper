@@ -35,7 +35,7 @@ const App = () => {
     try {
       setLoading(true);
       setFailure(false);
-      await axios.post("http://localhost:8000/scrape", { topic });
+      await axios.post(`http://localhost:8000/scrape`, { topic });
       await fetchArticles();
       setLoading(false);
     } catch (error) {

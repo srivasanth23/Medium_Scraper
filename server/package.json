@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "postinstall": "apt-get install -y libnss3 libxss1 libasound2 lsof"
   },
   "keywords": [],
   "author": "Srivasanth jammula",
@@ -15,6 +16,7 @@
     "body-parser": "^1.20.2",
     "browsers": "^1.0.2",
     "chrome": "^0.1.0",
+    "chromium": "^3.0.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
