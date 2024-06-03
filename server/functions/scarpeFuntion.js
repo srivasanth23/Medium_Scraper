@@ -1,25 +1,20 @@
-process.env.PUPPETEER_CACHE_DIR = '/opt/render/.cache/puppeteer';
 const puppeteer = require("puppeteer");
 
 async function scarpeFuntion(topic) {
   //Launch the browser and open a new blank page
-  const chromiumExecutablePath = puppeteer.executablePath();
-
-  const browser = await puppeteer.launch({executablePath: '/path/to/Chrome'});
-
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
-  await page.setDefaultNavigationTimeout(0);
 
   //seting user-agest to bypass login-stuff
-  // await page.setUserAgent(
-  //   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/0.0.0.0 Safari/537.36"
-  // );
+  await page.setUserAgent(
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/0.0.0.0 Safari/537.36"
+  );
 
   const query = encodeURIComponent(topic);
   const url = `https://medium.com/search?q=${query}`;
 
   //Navigate the page to a URL
-  await page.goto(url);
+  await page.goto(url, { waitUntil: "networkidle2" });
 
   //---Ignore below comments for now---
   //const result = await page.content();
