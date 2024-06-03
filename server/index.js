@@ -6,7 +6,7 @@ const {scarpeFuntion} = require("./functions/scarpeFuntion.js");
 
 const app = express();
 dotenv.config();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 10000;
 
 //middleware
 app.use(bodyParser.json());
