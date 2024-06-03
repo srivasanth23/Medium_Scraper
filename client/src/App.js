@@ -13,26 +13,30 @@ const App = () => {
   const [topic, setTopic] = React.useState("");
   const [articlesArray, setArticlesArray] = React.useState([]);
   const [isLoading, setLoading] = React.useState(false);
-  const [isFailure, setFailure] = React.useState("");
+  const [isFailure, setFailure] = React.useState(false);
   const [showmore, setshowmore] = React.useState(false);
 
-  const fetchArticles = async (e) => {
+  const fetchArticles = async () => {
+    const response = await axios.get("http://localhost:8000/articles");
+    setArticlesArray(response.data.articles);
+    toast.success("Articles fetched successfully");
+  };
+
+  const postArticle = async (e) => {
     e.preventDefault();
 
     if (!topic) {
       toast.error("Please enter topic");
       //toast.error("Refresh the page"); //(if deployed I had used this one)
-      toast.error("Server crashed, please run it again"); //(I didnt deplyed so used this one )
+      toast.error("Server crashed, please run it again"); //(I didnt deplyed, so I used this one )
+      return;
     }
 
     try {
       setLoading(true);
       setFailure(false);
-      const response = await axios.post("http://localhost:8000/scrape", {
-        topic,
-      });
-      setArticlesArray(response.data.articles);
-      toast.success("Articles fetched successfully");
+      await axios.post("http://localhost:8000/scrape", { topic });
+      await fetchArticles();
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -54,7 +58,7 @@ const App = () => {
     <div className="App">
       <Header />
       <div className="paddings div-container">
-        <form onSubmit={fetchArticles}>
+        <form onSubmit={postArticle}>
           <input
             type="text"
             placeholder="Enter topic"

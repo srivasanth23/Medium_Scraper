@@ -37,6 +37,9 @@ async function scarpeFuntion(topic) {
       const spanElem = article.querySelectorAll("span");
 
       spanCount = spanElem.length;
+      let date = null,
+        readTime = null,
+        premium = null;
       if (spanCount == 13) {
         //premium article
         date = spanElem[6].innerText;

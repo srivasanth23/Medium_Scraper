@@ -17,7 +17,7 @@ const Footer = () => {
         alignItems: "center",
       }}
     >
-      <span> Note: Refresh if some fields disapper</span>
+      <span> Note: Again click on Parse if some fields disapper</span>
       <div
         style={{
           color: "black",

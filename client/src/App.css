@@ -43,6 +43,7 @@
   text-decoration: underline;
   align-self: flex-end;
   margin-right : 100px;
+  margin-bottom: 20vh;
 }
 
 .ul-container{
@@ -72,6 +73,6 @@
 
   .showmoreBtn {
     margin-right : 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10vh;
   }
 }
